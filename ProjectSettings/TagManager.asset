@@ -3,12 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PizzaGrab
+  - PizzaServe
+  - Boombox
+  - MopHead
+  - Mopable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Post Process
   - Water
   - UI
   - 
