@@ -52,7 +52,12 @@ public class Music : Problem
 
     public override void Interact(Grabber grabber)
     {
-        if(playingSpooky)
+        if (playingSpooky)
+        {
             FixMusic();
+            playingSpooky = false;
+            ProblemManager.Instance.AdvanceEvent();
+        }
+            
     }
 }

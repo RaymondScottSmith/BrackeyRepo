@@ -70,5 +70,26 @@ public class FPS_Controller : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        if (Cursor.lockState == CursorLockMode.None && Input.GetMouseButton(0) && IsMouseOverGameWindow)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+    
+    bool IsMouseOverGameWindow
+    {
+        get
+        {
+            Vector3 mp = Input.mousePosition;
+            return !( 0>mp.x || 0>mp.y || Screen.width<mp.x || Screen.height<mp.y );
+        }
     }
 }

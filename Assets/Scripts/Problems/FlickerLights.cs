@@ -12,16 +12,19 @@ public class FlickerLights : MonoBehaviour
     float interval;
 
     private bool flickering;
+    private AudioSource myAudio;
 
     private void Awake()
     {
         myLight = GetComponent<Light>();
+        myAudio = GetComponent<AudioSource>();
     }
 
     [ContextMenu("Start Flickering")]
     public void StartFlicker()
     {
         flickering = true;
+        myAudio.Play();
     }
 
     [ContextMenu("Stop Flickering")]
@@ -29,6 +32,7 @@ public class FlickerLights : MonoBehaviour
     {
         flickering = false;
         myLight.enabled = true;
+        myAudio.Stop();
     }
     void Update()
     {

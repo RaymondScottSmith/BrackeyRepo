@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProblemManager : MonoBehaviour
 {
@@ -14,7 +16,9 @@ public class ProblemManager : MonoBehaviour
 
     public int currentProblem = 0;
 
-    public List<GameObject> mopMesses;
+    public TMP_Text instructions;
+
+    public Image instructionBox;
 
     private void Awake()
     {
@@ -42,8 +46,12 @@ public class ProblemManager : MonoBehaviour
 
     private IEnumerator WaitTillProblem(int index)
     {
+        instructions.text = "";
+        instructionBox.enabled = false;
         yield return new WaitForSeconds(timeBeforeProblem[index]);
         problems[index].gameObject.SetActive(true);
+        instructions.text = problems[index].instructions;
         problems[index].StartEvent();
+        instructionBox.enabled = true;
     }
 }

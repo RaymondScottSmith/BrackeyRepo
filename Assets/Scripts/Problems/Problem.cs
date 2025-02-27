@@ -7,6 +7,9 @@ public abstract class Problem : MonoBehaviour
     [SerializeField]
     protected string interactMessage;
 
+    [TextArea]
+    public string instructions;
+
     public Collider interactCollider;
 
     public abstract string InteractMessage(Grabber grabber);

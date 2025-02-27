@@ -9,6 +9,9 @@ TagManager:
   - Boombox
   - MopHead
   - Mopable
+  - CrateGrab
+  - TrashCan
+  - Guest
   layers:
   - Default
   - TransparentFX

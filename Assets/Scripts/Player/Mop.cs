@@ -11,10 +11,17 @@ public class Mop : Tool
 
     public Animator mopAnimator;
 
+    private Grabber playerGrabber;
+
     private void OnEnable()
     {
         busy = false;
         collBusy = false;
+    }
+
+    private void Awake()
+    {
+        playerGrabber = mopAnimator.GetComponentInChildren<Grabber>();
     }
 
     protected override void Update()
@@ -22,6 +29,7 @@ public class Mop : Tool
         if (!busy && Input.GetMouseButtonDown(0))
         {
             busy = true;
+            playerGrabber.PlayMopUse();
             mopAnimator.SetTrigger("Use");
             StartCoroutine(DelayMop());
         }

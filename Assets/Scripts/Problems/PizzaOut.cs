@@ -6,6 +6,13 @@ public class PizzaOut : Problem
 {
     public GameObject pizzas;
     public GameObject pizzaMan;
+    public Animator frontDoorAnimator;
+    private AudioSource myAudio;
+
+    private void Awake()
+    {
+        myAudio = GetComponent<AudioSource>();
+    }
     public override string InteractMessage(Grabber grabber)
     {
         if (grabber.heldPizza.activeSelf)
@@ -22,6 +29,8 @@ public class PizzaOut : Problem
     {
         pizzas.SetActive(false);
         pizzaMan.SetActive(true);
+        myAudio.Play();
+        frontDoorAnimator.SetTrigger("Change");
     }
 
     public override void Interact(Grabber grabber)
@@ -30,6 +39,7 @@ public class PizzaOut : Problem
         {
             RestockPizza();
             grabber.heldPizza.SetActive(false);
+            grabber.PlayPizzaSound();
             ProblemManager.Instance.AdvanceEvent();
         }
             

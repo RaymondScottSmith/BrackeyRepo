@@ -12,6 +12,8 @@ public class MopMess : Problem
 
    [SerializeField] public GrabMop grabMop;
 
+   private Grabber p_grabber;
+
    private void Awake()
    {
       mySprite = GetComponent<SpriteRenderer>();
@@ -28,6 +30,7 @@ public class MopMess : Problem
          ProblemManager.Instance.AdvanceEvent();
          interactMessage = "";
          mop.transform.parent.gameObject.SetActive(false);
+         p_grabber.DisplayMessage("");
          Destroy(gameObject);
       }
       else
@@ -39,6 +42,7 @@ public class MopMess : Problem
 
    public override string InteractMessage(Grabber grabber)
    {
+      p_grabber = grabber;
       if (grabber.heldMop.activeSelf && fadeOut>0)
       {
          return interactMessage;
